@@ -1,0 +1,20 @@
+-
+  name: Backup Config File
+  hosts: localhost
+  tasks:
+    -
+      name: If exists - remove it
+      file:
+        path: "{{ item }}.backup"
+        state: absent
+      with_items: 
+        - /etc/ssh/sshd_config
+        - /etc/httpd/conf.d/ssl.conf
+    -
+      name: Backup sshd_config
+      copy:
+        src: "{{ item }}"
+        dest: "{{ item }}.backup"
+      with_items: 
+        - /etc/ssh/sshd_config
+        - /etc/httpd/conf.d/ssl.conf

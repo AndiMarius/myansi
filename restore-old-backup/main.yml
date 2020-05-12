@@ -1,0 +1,23 @@
+-
+  name: Restore old backup
+  hosts: localhost
+  tasks:
+    -
+      name: If exists - remove it
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items: 
+        - /etc/ssh/sshd_config
+        - /etc/httpd/conf.d/ssl.conf
+    
+    - name: Restore old  backup
+      copy:
+        src: "{{ item }}.backup"
+        dest: "{{ item }}"
+      with_items:
+        - /etc/ssh/sshd_config
+        - /etc/httpd/conf.d/ssl.conf
+
+    
+    
