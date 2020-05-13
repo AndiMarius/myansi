@@ -1,0 +1,15 @@
+-
+  name: Backup ssl.conf Config File
+  hosts: localhost
+  tasks:
+    -
+      name: If exists backup file - remove it
+      file:
+        path: /etc/httpd/conf.d/ssl.conf.backup
+        state: absent
+
+    -
+      name: Backup sshd_config
+      copy:
+        src: /etc/httpd/conf.d/ssl.conf
+        dest: /etc/httpd/conf.d/ssl.conf.backup

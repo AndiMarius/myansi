@@ -1,0 +1,15 @@
+-
+  name: Restore old ssl.conf backup
+  hosts: localhost
+  tasks:
+    -
+      name: If exists config file - remove it
+      file:
+        path: /etc/httpd/conf.d/ssl.conf
+        state: absent
+
+    
+    - name: Restore old ssl.conf config backup
+      copy:
+        src: /etc/httpd/conf.d/ssl.conf.backup
+        dest: /etc/httpd/conf.d/ssl.conf
