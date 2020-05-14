@@ -1,4 +1,9 @@
-- name: Put SELinux in permissive mode, logging actions that would be blocked.
-  selinux:
-    policy: targeted
-    state: permissive
+-
+  name: Put SELinux in permissive mode
+  hosts: localhost
+  tasks:
+  - 
+    name: Task - Put SELinux in permissive mode
+    selinux:
+      policy: targeted
+      state: permissive
